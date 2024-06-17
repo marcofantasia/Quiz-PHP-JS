@@ -15,3 +15,5 @@ D:\Server Locale\Progetti\Test assunzione dev\PHP\Liv 6\src\tests\MiaClasseTest.
 FAILURES!
 Tests: 2, Assertions: 2, Failures: 1.
 */
+
+// esercizio risolto nella struttura delle cartelle e dei file

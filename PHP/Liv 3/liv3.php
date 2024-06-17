@@ -22,13 +22,26 @@ $html = <<<EOF
     </html>
 EOF;
 
-/* Soluzione
-Array
-(
-    [Nome] => Mario
-    [Cognome] => Rossi
-)
-*/
+// soluzione livello 3 
 
+$dom = new DOMDocument;
+libxml_use_internal_errors(true);
+$dom->loadHTML($html);
+libxml_clear_errors();
 
-// Codice:
+$xpath = new DOMXPath($dom);
+$rows = $xpath->query('//table/tr');
+
+$associativeArray = [];
+
+if ($rows->length > 1) {
+    $nameRow = $rows->item(1);
+    $columns = $nameRow->getElementsByTagName('td');
+
+    if ($columns->length >= 2) {
+        $associativeArray['Nome'] = $columns->item(0)->nodeValue;
+        $associativeArray['Cognome'] = $columns->item(1)->nodeValue;
+    }
+}
+
+print_r($associativeArray);

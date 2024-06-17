@@ -9,14 +9,15 @@ $persone = [
     'Nome: Giovanni, Cognome: Neri, Telefono: 3332345678',
 ];
 
-/* Soluzione
-Array
-(
-    [0] => 3331234567
-    [1] => 3337654321
-    [2] => 3334567890
-    [3] => 3332345678
-)
-*/
+// Soluzione livello 2
 
-// Codice:
+$numeriDiTelefono = [];
+
+foreach($persone as $persona){
+    preg_match('/Telefono: (\d+)/', $persona, $id);
+    if(isset($id[1])){
+        $numeriDiTelefono[] = $id[1];
+    }
+}
+
+print_r($numeriDiTelefono);

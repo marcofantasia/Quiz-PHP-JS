@@ -1,14 +1,25 @@
 <?php
 
-// Crea una classe che permetta di essere istanziata una sola volta, facendo si che i due oggetti $test1 e $test2 risultino identici (===)
+// soluzione livello 4-3
+
+class Singleton
+{
+    private static $instance;
+
+    private function __construct() {}
+
+    public static function getInstance()
+    {
+        if (!isset(self::$instance)) {
+            self::$instance = new static();
+        }
+        return self::$instance;
+    }
+}
 
 
+$test1 = Singleton::getInstance();
+$test2 = Singleton::getInstance();
 
-/* Risultato:
-bool(true)
-*/
 
-// Codice:
-
-// NON MODIFICARE
-var_dump($test1 === $test2);
+var_dump($test1 === $test2); 

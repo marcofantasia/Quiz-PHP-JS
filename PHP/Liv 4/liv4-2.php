@@ -14,9 +14,23 @@ abstract class Player implements IPlayer
     }
 }
 
-/* Risultato:
-Playing...Youtube
-Playing...Spotify
-*/
+// soluzione livello 4-2 
 
-// Codice:
+
+class YoutubePlayer extends Player
+{
+    protected static function getPlatformName() {
+        return "Youtube";
+    }
+}
+
+class SpotifyPlayer extends Player
+{
+    protected static function getPlatformName() {
+        return "Spotify";
+    }
+}
+
+YoutubePlayer::play();
+SpotifyPlayer::play();
+

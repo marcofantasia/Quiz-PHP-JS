@@ -9,11 +9,15 @@ $persone = [
     'Pinco Pallino - Trav. 2 - Via Roma 10, 10100 Torino',
 ];
 
-/* Soluzione
-Via Inghilterra 1
-Via Mario Rossi 5
-Minami-Azabu 4-11-44
-Trav. 2 - Via Roma 10
-*/
+// soluzione livello 2-2
 
-// Codice:
+$indirizzi = [];
+
+foreach($persone as $persona){
+    preg_match('/- (.*)/', $persona, $id);
+    if(isset($id[1])){
+        $indirizzi[] = $id[1];
+    }
+}
+
+print_r($indirizzi);

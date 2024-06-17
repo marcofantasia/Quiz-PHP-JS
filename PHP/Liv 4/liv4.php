@@ -41,43 +41,43 @@ $xml = <<<EOF
     </pazienti>
 EOF;
 
-/* Risultato:
-[
-    {
-        "nome": "Mario",
-        "cognome": "Rossi",
-        "eta": 24,
-        "alive": true,
-        "figli": [
-            {
-                "nome": "Giuseppe",
-                "cognome": "Rossi",
-                "eta": 3,
-                "alive": true
-            }
-        ]
-    },
-    {
-        "nome": "Giuseppe",
-        "cognome": "Verdi",
-        "eta": 30,
-        "alive": false,
-        "figli": [
-            {
-                "nome": "Carlo",
-                "cognome": "Verdi",
-                "eta": 5,
-                "alive": true
-            },
-            {
-                "nome": "Giovanni",
-                "cognome": "Verdi",
-                "eta": 10,
-                "alive": true
-            }
-        ]
-    }
-]
-*/
+// Soluzione livello 4 
 
-// Codice:
+$pazienti = new SimpleXMLElement($xml);
+
+
+$pazientiArray = [];
+
+
+foreach ($pazienti->paziente as $paziente) {
+    
+    $pazienteObj = new stdClass();
+    $pazienteObj->nome = (string) $paziente->nome;
+    $pazienteObj->cognome = (string) $paziente->cognome;
+    $pazienteObj->eta = (int) $paziente->eta;
+    $pazienteObj->alive = (bool) $paziente->alive;
+
+    $figliArray = [];
+
+    
+    foreach ($paziente->figli->figlio as $figlio) {
+        $figlioObj = new stdClass();
+        $figlioObj->nome = (string) $figlio->nome;
+        $figlioObj->cognome = (string) $figlio->cognome;
+        $figlioObj->eta = (int) $figlio->eta;
+        $figlioObj->alive = (bool) $figlio->alive;
+
+       
+        $figliArray[] = $figlioObj;
+    }
+
+    
+    $pazienteObj->figli = $figliArray;
+
+    
+    $pazientiArray[] = $pazienteObj;
+}
+
+
+$jsonResult = json_encode($pazientiArray, JSON_PRETTY_PRINT);
+echo $jsonResult;
